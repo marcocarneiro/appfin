@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <title>AppFin | @yield('titulo')</title>
@@ -26,13 +26,13 @@
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Seus Dados</a>
+                    <a class="nav-link" href="{{ route('seus_dados') }}">Seus Dados</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Extrato</a>
+                    <a class="nav-link" href="{{ route('extrato') }}">Extrato</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Nova Entrada</a>
+                    <a class="nav-link" href="{{ route('nova_entrada') }}">Nova Entrada</a>
                 </li>
                 @yield('nav-complementar')
             </ul>
