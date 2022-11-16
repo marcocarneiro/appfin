@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('auth.login');
+});
 
 ///////////// ROTAS PARA USUÁRIO LOGADO
 
@@ -35,3 +38,12 @@ Route::get('/nova_entrada', function () {
 Route::get('/seus_gastos', function () {
     return view('seus_gastos');
 })->name('seus_gastos');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
