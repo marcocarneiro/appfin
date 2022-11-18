@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MovimentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,4 +51,7 @@ Route::middleware([
         return view('seus_gastos');
     }
     )->name('seus_gastos');
+    
+    //Rota para inserção no BD dos movimentos
+    Route::post('/processa', [MovimentoController::class, 'gravar'])->name('processa');
 });

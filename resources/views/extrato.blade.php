@@ -17,10 +17,26 @@
 <div class="container d-flex">
     <div class="col-md-6 p-3">
         <h2>Receitas</h2>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="card-title">Title</p>
+                <p class="card-text">R$ 999.999,99</p>
+            </div>
+            <div class="card-footer">18/11/2022</div>
+        </div>
     </div>
 
     <div class="col-md-6 p-3">
         <h2>Despesas</h2>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="card-title">Title</p>
+                <p class="card-text">R$ 999.999,99</p>
+            </div>
+            <div class="card-footer">18/11/2022</div>
+        </div>
     </div>
 </div>
 
