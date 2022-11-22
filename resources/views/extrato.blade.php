@@ -9,43 +9,50 @@
 @endsection
 
 @section('conteudo')
-<header class="text-center">
-    EXTRATO - Saldo: R$ 9.999,00
+<header class="text-center fw-bold @if($totReceitas - $totDespesas < 0 )text-danger @endif">
+    EXTRATO - Saldo: R$ {{$totReceitas - $totDespesas}}
 </header>
 
-<?php dd($despesas); dd($receitas); ?>
 
 <div class="container d-flex">
     <div class="col-md-6 p-3">
-        <h2>Receitas</h2>
+        <h2>Receitas: R$ {{$totReceitas}}</h2>
 
-        <div class="card mb-4">
-            <div class="card-body">
-                <p class="card-title">Title</p>
-                <p class="card-text">R$ 999.999,99</p>
-            </div>
-            <div class="card-footer">
-                <span>18/11/2022</span>
-                <a href="#" class="mx-3"><i class="fa-regular fa-trash-can"></i></a>
-                <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
-            </div>
-        </div>
+        @if(count($receitas) == 0)
+            <p>Não Há movimentação de receitas</p>
+        @else
+            @foreach($receitas as $receita)
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p class="card-title">{{$receita->descricao}}</p>
+                        <p class="card-text">R$ {{$receita->valor}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span>{{ \Carbon\Carbon::parse($receita->created_at)->format('d/m/Y')}}</span>
+                        <a href="#" class="mx-3"><i class="fa-regular fa-trash-can"></i></a>
+                        <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                    </div>
+                </div>
+            @endforeach
+        @endif
     </div>
 
     <div class="col-md-6 p-3">
-        <h2>Despesas</h2>
+        <h2>Despesas: R$ {{$totDespesas}}</h2>
 
-        <div class="card mb-4">
-            <div class="card-body">
-                <p class="card-title">Title</p>
-                <p class="card-text">R$ 999.999,99</p>
+        @foreach($despesas as $despesa)
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p class="card-title">{{$despesa->descricao}}</p>
+                    <p class="card-text">R$ {{$despesa->valor}}</p>
+                </div>
+                <div class="card-footer">
+                    <span>{{ \Carbon\Carbon::parse($despesa->created_at)->format('d/m/Y')}}</span>
+                    <a href="#" class="mx-3"><i class="fa-regular fa-trash-can"></i></a>
+                    <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                </div>
             </div>
-            <div class="card-footer">
-                <span>18/11/2022</span>
-                <a href="#" class="mx-3"><i class="fa-regular fa-trash-can"></i></a>
-                <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 
