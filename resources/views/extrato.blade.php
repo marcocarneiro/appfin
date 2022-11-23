@@ -30,7 +30,7 @@
                     <div class="card-footer">
                         <span>{{ \Carbon\Carbon::parse($receita->created_at)->format('d/m/Y')}}</span>
                         <a href="#" class="mx-3"><i class="fa-regular fa-trash-can"></i></a>
-                        <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                        <a href="{{route('editar',[$receita->id])}}"><i class="fa-regular fa-pen-to-square"></i></a>
                     </div>
                 </div>
             @endforeach
@@ -39,20 +39,23 @@
 
     <div class="col-md-6 p-3">
         <h2>Despesas: R$ {{$totDespesas}}</h2>
-
-        @foreach($despesas as $despesa)
-            <div class="card mb-4">
-                <div class="card-body">
-                    <p class="card-title">{{$despesa->descricao}}</p>
-                    <p class="card-text">R$ {{$despesa->valor}}</p>
+        @if(count($despesas) == 0)
+            <p>Não Há movimentação de despesas</p>
+        @else
+            @foreach($despesas as $despesa)
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p class="card-title">{{$despesa->descricao}}</p>
+                        <p class="card-text">R$ {{$despesa->valor}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span>{{ \Carbon\Carbon::parse($despesa->created_at)->format('d/m/Y')}}</span>
+                        <a href="#" class="mx-3"><i class="fa-regular fa-trash-can"></i></a>
+                        <a href="{{route('editar',[$despesa->id])}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <span>{{ \Carbon\Carbon::parse($despesa->created_at)->format('d/m/Y')}}</span>
-                    <a href="#" class="mx-3"><i class="fa-regular fa-trash-can"></i></a>
-                    <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
-                </div>
-            </div>
-        @endforeach
+            @endforeach
+        @endif
     </div>
 </div>
 

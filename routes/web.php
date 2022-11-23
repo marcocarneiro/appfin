@@ -28,10 +28,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    //Rota extrato
-    Route::get('/extrato', [MovimentoController::class, 'get_movimentos'])->name('extrato');
-
-    //Rota Seus Dados
+        //Rota Seus Dados
     Route::get('/seus_dados', function () {
         return view('seus_dados');
     }
@@ -49,6 +46,16 @@ Route::middleware([
     }
     )->name('seus_gastos');
     
-    //Rota para inserção no BD dos movimentos
+    //Rota para inserção no BD dos movimentos - C do CRUD
     Route::post('/processa', [MovimentoController::class, 'gravar'])->name('processa');
+
+    //Rota extrato - READ R do CRUD
+    Route::get('/extrato', [MovimentoController::class, 'get_movimentos'])->name('extrato');
+
+    //Rotas para o UPDATE - U do CRUD - uma rota para o formulário de atualização
+    Route::get('/editar/{id}', [MovimentoController::class, 'get_movimento'] )->name('editar');
+
+    //Rota para processar a atualização
+    Route::put('/atualiza', [MovimentoController::class, 'atualizar'] )
+    ->name('atualiza');
 });
