@@ -15,6 +15,7 @@ processes = []
   LOG_CHANNEL = "stderr"
   LOG_LEVEL = "info"
   LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
+  APP_URL = "https://appfin.fly.dev"
 
 [experimental]
   allowed_public_ports = []
